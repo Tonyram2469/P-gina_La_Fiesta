@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Fiesta - Celebra la Vida!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo-container" onclick="showView('home')">
+        <img src="Imagenes/Logos/Logopng.png"  alt="La Fiesta Logo"> <span style="font-weight: bold; font-family: 'Montserrat';"></span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="showView('home')">Inicio</a></li>
+            <li><a href="#" onclick="showView('gallery')">Galería</a></li>
+            <li><a href="#" onclick="showView('renta')">Renta</a></li>
+            <li><a href="#" onclick="showView('contacto')">Contacto</a></li>
+            <li><a href="#" onclick="showView('account')">Cuenta</a></li>
+        </ul>
+    </nav>
+    <div class="cart-icon" onclick="showView('cart')">
+        🛒 <span id="cart-count">0</span>
+    </div>
+</header>
+
+<div id="home" class="view active">
+    <div class="carousel">
+        <div class="carousel-inner" id="carousel-inner">
+            <div class="carousel-item active">
+                <img src="Imagenes/Decoraciones/Baby Showers/bs1.jpg" alt="Mobiliario La Fiesta">
+                <div class="carousel-caption">
+                    <h1>Celebra la Vida con Estilo</h1>
+                    <p>Expertos en decoración y renta en Nochistlán.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="Imagenes/Decoraciones/Infantiles/inf1.jpg" alt="Decoración de Eventos">
+                <div class="carousel-caption">
+                    <h1>Momentos Inolvidables</h1>
+                    <p>Diseñamos el ambiente perfecto para ti.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="Imagenes/Decoraciones/Quinceañeras/qn1.jpg" alt="Servicios de Banquete">
+                <div class="carousel-caption">
+                    <h1>Calidad y Elegancia</h1>
+                    <p>Todo lo que necesitas en un solo lugar.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="carousel-control next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+
+    <div class="grid">
+    <div class="card" onclick="showView('renta')">
+        <img src="imagenes/Articulos_Renta/rnt1.jpg" alt="Renta de Mobiliario">
+        <h3>Mobiliario</h3>
+        <p>Sillas, mesas y más para tu confort.</p>
+    </div>
+
+    <div class="card" onclick="showView('gallery')">
+        <img src="Imagenes/Decoraciones/Baby Showers/bs4.jpg" alt="Decoración de Eventos">
+        <h3>Decoración</h3>
+        <p>Centros de mesa, globos y arreglos únicos.</p>
+    </div>
+
+    <div class="card" onclick="showView('gallery')">
+        <img src="imagenes/Mesas Postres/pos1.jpg" alt="Mesa de postres">
+        <h3>Mesa de Postres</h3>
+        <p>Planificación integral para momentos especiales.</p>
+    </div>
+</div>
+</div>
+
+<div id="gallery" class="view">
+    <h2>Galería de Eventos</h2>
+    <div class="grid" id="event-grid">
+        </div>
+</div>
+
+<div id="renta" class="view">
+    <h2>Catálogo de Renta</h2>
+    <div class="grid" id="product-grid">
+        </div>
+</div>
+
+<div id="contacto" class="view">
+    <h2>Contáctanos</h2>
+    <div class="account-container">
+        <p style="text-align: center; margin-bottom: 1rem;">Estamos en Nochistlán, Zacatecas.</p>
+        <div class="form-group"><input type="text" placeholder="Nombre Completo"></div>
+        <div class="form-group"><input type="text" placeholder="Número de teléfono"></div>
+        <div class="form-group"><input type="email" placeholder="Correo Electrónico"></div>
+        <div class="form-group"><textarea style="width: 100%; border-radius: 8px; padding: 10px;" placeholder="Detalles de tu evento..."></textarea></div>
+        <button class="btn">Enviar Mensaje</button>
+    </div>
+</div>
+
+<div id="account" class="view">
+    <div id="login-container" class="account-container">
+        <h2>Iniciar Sesión</h2>
+        <div class="form-group"><input type="email" id="login-email" placeholder="Correo Electrónico"></div>
+        <div class="form-group"><input type="password" id="login-pass" placeholder="Contraseña"></div>
+        <div style="margin-bottom: 15px; font-size: 0.85rem; text-align: center;">
+            <a href="javascript:void(0)" onclick="showAccSubView('recovery')">Olvidé mi contraseña</a> | 
+            <a href="javascript:void(0)" onclick="showAccSubView('register')">Crear cuenta nueva</a>
+        </div>
+        <p id="login-error" style="color: red; display: none; text-align: center;">Correo o contraseña incorrectos.</p>
+        <button class="btn" onclick="handleLogin()">Ingresar</button>
+    </div>
+
+    <div id="register-container" class="account-container" style="display: none;">
+        <h2>Crear Cuenta</h2>
+        <div class="form-group"><input type="text" id="reg-name" placeholder="Nombre Completo"></div>
+        <div class="form-group"><input type="email" id="reg-email" placeholder="Correo Electrónico"></div>
+        <div class="form-group"><input type="password" id="reg-pass" placeholder="Contraseña"></div>
+        <button class="btn" onclick="handleRegister()">Registrarme</button>
+        <button class="btn" style="background:#666; margin-top:10px;" onclick="showAccSubView('login')">Volver</button>
+    </div>
+
+    <div id="recovery-container" class="account-container" style="display: none;">
+        <h2>Recuperar Contraseña</h2>
+        <div class="form-group"><input type="email" id="recov-email" placeholder="Correo Electrónico"></div>
+        <button class="btn" onclick="handleRecovery()">Enviar enlace</button>
+        <button class="btn" style="background:#666; margin-top:10px;" onclick="showAccSubView('login')">Volver</button>
+    </div>
+
+    <div id="dashboard-container" class="account-container" style="display: none; max-width: 900px;">
+        <h2>Panel de Control</h2>
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <div class="card" style="background: white; color: var(--dark); text-align: left;">
+                <h3 style="color: var(--tertiary); border-bottom: 2px solid var(--secondary); padding-bottom: 5px;">Mis Datos</h3>
+                <p style="margin-top: 15px;"><strong>Nombre:</strong> <span id="info-name"></span></p>
+                <p><strong>Correo:</strong> <span id="info-email"></span></p>
+                <p><strong>Ubicación:</strong> Nochistlán, Zacatecas</p>
+                <button class="btn" style="font-size: 0.8rem; padding: 5px;" onclick="alert('Función para editar datos próximamente')">Editar Perfil</button>
+            </div>
+
+            <div class="card" style="background: white; color: var(--dark); text-align: left;">
+                <h3 style="color: var(--tertiary); border-bottom: 2px solid var(--secondary); padding-bottom: 5px;">Métodos de Pago</h3>
+                <div id="payment-list" style="margin: 15px 0; min-height: 50px;"></div>
+                <button class="btn" onclick="addPaymentMethod()">+ Añadir Tarjeta</button>
+            </div>
+        </div>
+        <button class="btn" style="background: #333; margin-top: 30px; width: 200px;" onclick="handleLogout()">Cerrar Sesión</button>
+    </div>
+
+    <div id="add-card-container" class="account-container" style="display: none;">
+    <h2>Añadir Método de Pago</h2>
+    <div class="form-group">
+        <label>Nombre en la Tarjeta</label>
+        <input type="text" id="card-holder" placeholder="Ej. Antony Ramírez">
+    </div>
+    <div class="form-group">
+        <label>Número de Tarjeta</label>
+        <input type="text" id="card-num" maxlength="16" placeholder="0000 0000 0000 0000">
+    </div>
+    <div style="display: flex; gap: 10px;">
+        <div class="form-group" style="flex: 1;">
+            <label>Expiración</label>
+            <input type="text" id="card-exp" placeholder="MM/AA" maxlength="5">
+        </div>
+        <div class="form-group" style="flex: 1;">
+            <label>CVV</label>
+            <input type="password" id="card-cvv" placeholder="123" maxlength="3">
+        </div>
+    </div>
+    <button class="btn" onclick="handleSaveCard()">Guardar Tarjeta</button>
+    <button class="btn" style="background:#666; margin-top:10px;" onclick="showAccSubView('dashboard')">Cancelar</button>
+</div>
+</div>
+
+<div id="cart" class="view">
+    <h2>Tu Carrito de Renta</h2>
+    <div class="cart-list" id="cart-items">
+        <p style="text-align: center;">Tu carrito está vacío.</p>
+    </div>
+    <div class="cart-list" style="margin-top: 1rem; text-align: right;">
+        <h3>Total: $<span id="total-price">0.00</span></h3>
+        <button class="btn" onclick="checkout()">Proceder al Pago</button>
+    </div>
+</div>
+
+<div id="event-detail" class="view">
+    <button class="btn" style="width: auto; margin-bottom: 20px;" onclick="showView('gallery')">← Volver a Galería</button>
+    
+    <div id="event-hero" class="event-hero-header">
+        <h1 id="detail-title">Nombre del Evento</h1>
+        <p id="detail-desc">La magia de los momentos especiales capturada en imágenes.</p>
+    </div>
+
+    <div class="mini-carousel">
+        <div class="mini-carousel-inner" id="mini-carousel-content">
+            </div>
+    </div>
+
+    <div class="mosaic-grid" id="mosaic-content">
+        </div>
+</div>
+
+<section class="faq-container">
+    <h2>Preguntas Frecuentes</h2>
+    <div class="accordion">
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleFAQ(this)">¿Con cuánto tiempo de anticipación debo reservar? <span>+</span></button>
+            <div class="accordion-content"><p>Recomendamos reservar con al menos 15 días de anticipación para asegurar la disponibilidad de mobiliario, especialmente en temporada alta.</p></div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleFAQ(this)">¿Cuentan con servicio a domicilio en Nochistlán? <span>+</span></button>
+            <div class="accordion-content"><p>Sí, ofrecemos entrega y recolección gratuita dentro de la zona centro de Nochistlán de Mejía. Para comunidades aledañas, aplicamos un cargo mínimo de transporte.</p></div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleFAQ(this)">¿Qué pasa si un artículo se daña durante el evento? <span>+</span></button>
+            <div class="accordion-content"><p>Contamos con una política de daños. Se realizará un cargo adicional por reposición o reparación dependiendo del estado del artículo al momento de la recolección.</p></div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleFAQ(this)">¿Tienen paquetes para eventos grandes (Bodas/XV Años)? <span>+</span></button>
+            <div class="accordion-content"><p>¡Claro! Contamos con paquetes especiales que incluyen mobiliario completo, mantelería de lujo y centros de mesa. Consulta la sección de Galería para ver ejemplos.</p></div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleFAQ(this)">¿Cuáles son las formas de pago aceptadas? <span>+</span></button>
+            <div class="accordion-content"><p>Aceptamos efectivo, transferencias bancarias y pagos con tarjeta de crédito o débito directamente en nuestro local o a través de la plataforma.</p></div>
+        </div>
+    </div>
+</section>
+
+<footer class="main-footer">
+    <div class="footer-grid">
+        <div class="footer-info">
+            <h3 style="color: var(--tertiary);">La Fiesta 🎈</h3>
+            <p>Creamos momentos inolvidables en Nochistlán de Mejía, Zacatecas. Tu evento, nuestra pasión.</p>
+        </div>
+        <div class="footer-links">
+            <h4>Navegación</h4>
+            <ul>
+                <li><a href="#" onclick="showView('home')">Inicio</a></li>
+                <li><a href="#" onclick="showView('renta')">Catálogo</a></li>
+                <li><a href="#" onclick="showView('gallery')">Galería</a></li>
+            </ul>
+        </div>
+        <div class="footer-contact">
+            <h4>Contacto</h4>
+            <p>📍 Calle Enrique Estrada #30, Nochistlán de Mejía, Zac.</p>
+            <p>📞 Tel: (346) 700 0327</p>
+            <p>📧 contacto@lafiestanochistlan.com</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 La Fiesta - Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<script>
+    // --- DATOS ---
+    const products = [
+        { id: 1, name: 'Silla Tiffany', price: 25.0, img: 'Imagenes/Articulos Renta/stif.jpg' },
+        { id: 2, name: 'Mesa Tablón', price: 80.0, img: 'Imagenes/Articulos Renta/mt1.jpg' },
+        { id: 3, name: 'Mantel Premium', price: 45.0, img: 'Imagenes/Articulos Renta/mnt1.webp' },
+        { id: 4, name: 'Sonotubo Decorado', price: 120.0, img: 'Imagenes/Articulos Renta/snt1.jpg' }
+    ];
+
+   // --- NUEVO LISTADO DE EVENTOS ---
+const events = [
+    { name: 'Bodas', img: 'imagenes/decoraciones/bodas/bod1.jpg' },
+    { name: 'Bautizos', img: 'imagenes/decoraciones/bautizos/ba1.jpg' },
+    { name: 'Infantiles', img: 'imagenes/decoraciones/infantiles/inf3.jpg' },
+    { name: 'Quinceañeras', img: 'imagenes/decoraciones/quinceañeras/qn1.jpg' },
+    { name: 'Graduaciones', img: 'imagenes/decoraciones/graduaciones/grd1.jpg' },
+    { name: 'Despedidas', img: 'imagenes/decoraciones/despedidas/sol1.jpeg' },
+    { name: 'Comuniones', img: 'imagenes/decoraciones/comuniones/comu1.jpg' },
+    { name: 'Baby Showers', img: 'imagenes/decoraciones/baby showers/bs2.jpg' }
+];
+
+    let cart = [];
+
+    // --- NAVEGACIÓN ---
+    function showView(viewId) {
+        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+        document.getElementById(viewId).classList.add('active');
+        window.scrollTo(0,0);
+    }
+
+    // --- RENDERIZADO ---
+    function init() {
+    // 1. Renderizado de Productos (Catálogo)
+    const pGrid = document.getElementById('product-grid');
+    if(pGrid) {
+        products.forEach(p => {
+            pGrid.innerHTML += `
+                <div class="card">
+                    <img src="${p.img}" alt="${p.name}">
+                    <h3>${p.name}</h3>
+                    <p style="color: var(--white); font-weight: bold;">$${p.price.toFixed(2)}</p>
+                    <button class="btn" onclick="addToCart(${p.id})">Añadir al Carrito</button>
+                </div>
+            `;
+        });
+    }
+
+    // 2. Renderizado de Galería de Eventos (CORREGIDO)
+    const eGrid = document.getElementById('event-grid');
+    if(eGrid) {
+        eGrid.innerHTML = ''; 
+        events.forEach(e => {
+            // Aquí cambiamos el alert por la función openDetailedGallery
+            eGrid.innerHTML += `
+                <div class="card" onclick="openDetailedGallery('${e.name}')">
+                    <img src="${e.img}" alt="${e.name}">
+                    <h3>${e.name}</h3>
+                    <button class="btn" style="background: rgba(255,255,255,0.2); border: 1px solid white;">Ver Galería</button>
+                </div>
+            `;
+        });
+    }
+}
+
+    // --- LÓGICA CARRITO ---
+    function addToCart(id) {
+        const product = products.find(p => p.id === id);
+        cart.push(product);
+        updateCartUI();
+    }
+
+    function updateCartUI() {
+        document.getElementById('cart-count').innerText = cart.length;
+        const cartItems = document.getElementById('cart-items');
+        const totalPrice = document.getElementById('total-price');
+        
+        if(cart.length === 0) {
+            cartItems.innerHTML = '<p style="text-align: center;">Tu carrito está vacío.</p>';
+            totalPrice.innerText = '0.00';
+            return;
+        }
+
+        cartItems.innerHTML = '';
+        let total = 0;
+        cart.forEach((item, index) => {
+            total += item.price;
+            cartItems.innerHTML += `
+                <div class="cart-item">
+                    <span>${item.name}</span>
+                    <span>$${item.price.toFixed(2)} <button onclick="removeFromCart(${index})" style="color:red; background:none; border:none; cursor:pointer;">(x)</button></span>
+                </div>
+            `;
+        });
+        totalPrice.innerText = total.toFixed(2);
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartUI();
+    }
+
+    // --- LÓGICA CUENTA ---
+    function login() {
+        const user = document.getElementById('user').value;
+        if(user) {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('account-details').style.display = 'block';
+            document.getElementById('display-user').innerText = user;
+        }
+    }
+
+    function logout() {
+        document.getElementById('login-form').style.display = 'block';
+        document.getElementById('account-details').style.display = 'none';
+    }
+
+    function addPayment() {
+        const method = prompt("Ingrese los últimos 4 dígitos de su tarjeta:");
+        if(method) {
+            document.getElementById('payment-methods').innerHTML = `Visa terminada en ****${method}`;
+        }
+    }
+// --- LÓGICA DEL CARRUSEL ---
+let slideIndex = 0;
+const slides = document.querySelectorAll('.carousel-item');
+
+function updateCarousel() {
+    const inner = document.getElementById('carousel-inner');
+    inner.style.transform = `translateX(-${slideIndex * 100}%)`;
+}
+
+function changeSlide(n) {
+    slideIndex += n;
+    if (slideIndex >= slides.length) slideIndex = 0;
+    if (slideIndex < 0) slideIndex = slides.length - 1;
+    updateCarousel();
+}
+
+// Cambio automático cada 5 segundos
+setInterval(() => {
+    changeSlide(1);
+}, 5000);
+    init();
+
+function toggleFAQ(header) {
+    const item = header.parentElement;
+    // Cerrar otros abiertos (opcional)
+    document.querySelectorAll('.accordion-item').forEach(i => {
+        if (i !== item) i.classList.remove('active');
+    });
+    // Alternar el actual
+    item.classList.toggle('active');
+}
+
+// 1. Base de datos de fotos por evento (Añade tus rutas reales aquí)
+const eventPhotos = {
+    'Bodas': ['bod1.jpg', 'bod3.jpg', 'bod3.jpg', 'bod4.jpg', 'bod5.jpg'],
+    'Bautizos': ['ba1.jpg', 'ba2.jpg', 'ba3.jpg', 'bau3.jpg','bau4'],
+    'Infantiles': ['inf1.jpg', 'inf2.jpg', 'inf3.jpg', 'inf4.jpg', 'inf5.jpg', 'inf6.jpg', 'inf7.jpg', 'inf8.jpg', 'inf9.jpg', 'inf10.jpg'],
+    'Quinceañeras': ['qn1.jpg', 'qn2.jpg', 'qn3.jpg'],
+    'Graduaciones': ['grd1.jpg', 'grad2.jpg'],
+    'Despedidas': ['sol1.jpeg'],
+    'Comuniones': ['comu1.jpg', 'comu2.jpg', 'comu3'],
+    'Baby Showers': ['bs1.jpg', 'bs2.jpg', 'bs3.jpg','bs4.jpg', 'bs5.jpg', 'bs6.JPG']
+};
+
+// 2. Función para abrir la galería detallada
+function openDetailedGallery(eventName) {
+    const title = document.getElementById('detail-title');
+    const miniContent = document.getElementById('mini-carousel-content');
+    const mosaicContent = document.getElementById('mosaic-content');
+
+    // Cambiar Título
+    title.innerText = eventName;
+
+    // Limpiar contenidos
+    miniContent.innerHTML = '';
+    mosaicContent.innerHTML = '';
+
+    // Obtener fotos (si no hay, usar un array vacío)
+    const photos = eventPhotos[eventName] || [];
+
+    // Llenar Carrusel y Mosaico
+    photos.forEach((photo, index) => {
+        const path = `Imagenes/Decoraciones/${eventName}/${photo}`;
+        
+        // Carrusel (Top 3)
+        if (index < 3) {
+            miniContent.innerHTML += `<img src="${path}" class="mini-item" alt="Destacado">`;
+        }
+        
+        // Mosaico (Todas)
+        mosaicContent.innerHTML += `<img src="${path}" class="mosaic-img" alt="Galería ${eventName}">`;
+    });
+
+    showView('event-detail');
+}
+
+/// --- LÓGICA DE USUARIOS MEJORADA ---
+let users = JSON.parse(localStorage.getItem('laFiestaUsers')) || [
+    { name: 'Admin Fiesta', email: 'admin@fiesta.com', pass: '123', cards: [] }
+];
+let currentUser = null;
+
+// Registro con Nombre y Email
+function handleRegister() {
+    const name = document.getElementById('reg-name').value;
+    const email = document.getElementById('reg-email').value;
+    const pass = document.getElementById('reg-pass').value;
+
+    if (name && email && pass) {
+        // Verificar si el correo ya existe
+        if(users.find(u => u.email === email)) {
+            alert("Este correo ya está registrado.");
+            return;
+        }
+
+        users.push({ name: name, email: email, pass: pass, cards: [] });
+        saveData();
+        alert("¡Cuenta creada, " + name + "! Ya puedes iniciar sesión.");
+        showAccSubView('login');
+    } else {
+        alert("Por favor llena todos los campos.");
+    }
+}
+
+// Login por Email
+function handleLogin() {
+    const emailIn = document.getElementById('login-email').value;
+    const passIn = document.getElementById('login-pass').value;
+    const errorMsg = document.getElementById('login-error');
+
+    const found = users.find(u => u.email === emailIn && u.pass === passIn);
+
+    if (found) {
+        currentUser = found;
+        errorMsg.style.display = 'none';
+        renderDashboard();
+    } else {
+        errorMsg.style.display = 'block';
+    }
+}
+
+// Renderizar Dashboard con todos los datos
+function renderDashboard() {
+    showAccSubView('dashboard');
+    
+    // Llenar datos personales
+    document.getElementById('info-name').innerText = currentUser.name;
+    document.getElementById('info-email').innerText = currentUser.email;
+
+    // Llenar métodos de pago
+    const list = document.getElementById('payment-list');
+    list.innerHTML = currentUser.cards.length ? '' : '<p style="font-size:0.8rem; opacity:0.6;">No hay tarjetas guardadas.</p>';
+
+    currentUser.cards.forEach((card, index) => {
+        list.innerHTML += `
+            <div class="payment-card" style="border-left: 4px solid var(--tertiary);">
+                <span>💳 **** ${card}</span>
+                <button class="btn-delete" onclick="deletePayment(${index})">Eliminar</button>
+            </div>
+        `;
+    });
+}
+
+function saveData() {
+    localStorage.setItem('laFiestaUsers', JSON.stringify(users));
+}
+
+// Esta función es la que hace "magia" para cambiar entre Login, Registro y Recuperación
+function showAccSubView(viewId) {
+    // 1. Ocultamos todos los contenedores de la sección cuenta
+    document.getElementById('login-container').style.display = 'none';
+    document.getElementById('register-container').style.display = 'none';
+    document.getElementById('recovery-container').style.display = 'none';
+    document.getElementById('dashboard-container').style.display = 'none';
+
+    // 2. Mostramos solo el que nos interesa
+    const target = document.getElementById(viewId + '-container');
+    if (target) {
+        target.style.display = 'block';
+    }
+}
+
+// También te faltaba la lógica para cerrar sesión
+function handleLogout() {
+    currentUser = null;
+    showAccSubView('login');
+}
+
+// Y la lógica para la recuperación (aunque sea un mensaje de prueba)
+function handleRecovery() {
+    const email = document.getElementById('recov-email').value;
+    if(email) {
+        alert("Se ha enviado un enlace de recuperación a: " + email);
+        showAccSubView('login');
+    } else {
+        alert("Por favor ingresa tu correo.");
+    }
+}
+
+// Función para mostrar el formulario de añadir tarjeta
+function addPaymentMethod() {
+    showAccSubView('add-card');
+}
+
+// Lógica para guardar la tarjeta
+function handleSaveCard() {
+    const holder = document.getElementById('card-holder').value;
+    const num = document.getElementById('card-num').value;
+    const exp = document.getElementById('card-exp').value;
+    const cvv = document.getElementById('card-cvv').value;
+
+    if (holder && num.length >= 15 && exp && cvv) {
+        // Guardamos solo los últimos 4 dígitos por "seguridad" en nuestro prototipo
+        const lastFour = num.slice(-4);
+        
+        // Añadimos el objeto al usuario actual
+        currentUser.cards.push({
+            holder: holder,
+            lastFour: lastFour,
+            brand: 'Visa' // Podrías añadir lógica para detectar si es Mastercard/Visa
+        });
+
+        saveData();
+        alert("Tarjeta añadida con éxito.");
+        
+        // Limpiar campos y volver al dashboard
+        document.getElementById('card-holder').value = '';
+        document.getElementById('card-num').value = '';
+        document.getElementById('card-exp').value = '';
+        document.getElementById('card-cvv').value = '';
+        
+        renderDashboard();
+    } else {
+        alert("Por favor, llena los datos correctamente.");
+    }
+}
+
+// Función para eliminar tarjeta (Actualizada)
+function deletePayment(index) {
+    if(confirm("¿Estás seguro de que deseas eliminar este método de pago?")) {
+        currentUser.cards.splice(index, 1);
+        saveData();
+        renderDashboard();
+    }
+}
+
+// Renderizar Dashboard (Actualizada para mostrar las tarjetas)
+function renderDashboard() {
+    showAccSubView('dashboard');
+    document.getElementById('info-name').innerText = currentUser.name;
+    document.getElementById('info-email').innerText = currentUser.email;
+
+    const list = document.getElementById('payment-list');
+    list.innerHTML = ''; // Limpiar lista
+
+    if (currentUser.cards.length === 0) {
+        list.innerHTML = '<p style="color: #888; font-size: 0.9rem;">No hay tarjetas guardadas.</p>';
+    } else {
+        currentUser.cards.forEach((card, index) => {
+            list.innerHTML += `
+                <div class="payment-item">
+                    <div class="card-info">
+                        <span class="card-icon">💳</span>
+                        <div>
+                            <p style="font-weight: 600; margin: 0;">**** ${card.lastFour}</p>
+                            <p style="font-size: 0.75rem; color: #666; margin: 0;">${card.holder}</p>
+                        </div>
+                    </div>
+                    <button class="btn-delete-card" onclick="deletePayment(${index})">Eliminar</button>
+                </div>
+            `;
+        });
+    }
+}
+
+// IMPORTANTE: Asegúrate de añadir 'add-card-container' a tu función showAccSubView
+function showAccSubView(viewId) {
+    document.getElementById('login-container').style.display = 'none';
+    document.getElementById('register-container').style.display = 'none';
+    document.getElementById('recovery-container').style.display = 'none';
+    document.getElementById('dashboard-container').style.display = 'none';
+    document.getElementById('add-card-container').style.display = 'none'; // AÑADIR ESTA LÍNEA
+
+    document.getElementById(viewId + '-container').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
